@@ -1,0 +1,78 @@
+/* www.865171.cn*/
+*{ margin:0; padding:0;}
+body{ font-size:12px; background:#909090 url(bg3.jpg) repeat-x left bottom; font-family:"Î¢ÈíÑÅºÚ",Arial, Helvetica, sans-serif; color:#454545 }
+h1,h2,h3,h4,h5,h6{ font-size:12px;}
+a{ text-decoration:none; color:#454545;}
+a:hover{ text-decoration:underline; color:#ff0000;}
+ul{ list-style:none;}
+li{ list-style:none;}
+.clear{ clear:both; width:100%; height:0; overflow:hidden;}
+img{ border:none;}
+em{ font-style:normal;}
+.container {margin:0;position:relative;width:1000px;height:264px; background:url(bg.jpg) no-repeat left bottom; margin-bottom:35px;}
+.top{ background:url(bg1.jpg) repeat; height:118px; width:100%; overflow:hidden}
+.top_bar{ width:1000px; margin:0 auto}
+.logo{ width:241px; height:79px; float:left; background:url(../img/muyelogo.png) fixed center center  no-repeat}
+.at1{ width:209px; height:30px; float:right; background:url(bg1.png) no-repeat; line-height:30px; color:#fff; text-indent:50px; margin:18px 0 0 0}
+.content{background:#939393 url(bg5.jpg) repeat-x;}
+.main{ width:1000px; margin:0 auto; background:#f0f0f0; padding-bottom:20px;}
+.box1{ width:403px; float:left; margin:0 0 0 70px; display:inline;padding-bottom:18px;}
+.img1{ width:122px; float:left; height:152px;}
+.foot{ background:url(bg3.jpg) repeat-x; height:52px; width:1000px; margin:0 auto; color:#6d6d6d}
+.foot_nav{ float:left; color#6d6d6d; padding:12px 0   }
+.foot_nav a{ color:#6d6d6d; padding:0 5px;}
+.foot_bar{ float:right; line-height:20px; font-size:11px; padding:2px 0 0 0}
+.banner2{ background:url(bg.jpg) no-repeat left bottom; height:103px;}
+.banner2 img{ width:1000px; height:100px;}
+.bar{ height:50px; line-height:50px; border-bottom:1px solid #cacaca; position:relative; text-indent:50px; margin-bottom:16px;}
+.bar b{ color:#3a0b00; font-size:22px; font-weight:400}
+.bar span{ position:absolute; right:45px; top:0;display:block; color:#bb3c03}
+.bar samp{ position:absolute; right:45px; top:0;display:block; }
+.bar samp a{ color:#bb3c03; font-weight:bold}
+.left{ width:580px; float:left; margin:0 37px 0 50px; display:inline}
+.box4{ border-bottom:1px dashed #cacaca; padding:16px 0 12px 0; overflow:hidden}
+.at3{ border-bottom:1px solid #cacaca; padding:0px 0 25px 0}
+.more2{ text-align:center; padding:15px 0}
+.more2 a{ color:#444; padding:0 5px;}
+.left1{ width:295px; float:left;}
+.right1{ width:618px; float:left; border-left:1px solid #cacaca; padding-left:36px;}
+.bar3{ height:25px; line-height:25px; position:relative; margin-bottom:18px;}
+.bar3 *{ vertical-align:middle}
+.bar3 b{ font-size:18px; color:#3a0b00; font-weight:400}
+.jslx{ position:absolute; right:0 !important; top:0; height:25px; display:block; width:423px;}
+.jslx span{ width:70px; float:left; display:block}
+.select1{ width:132px; height:25px;float:left; overflow:hidden; margin:0 4px 0 0; display:inline}
+.beij{ background:url(bg8.jpg) no-repeat; width:215px; float:left}
+.txt4{ width:126px; height:21px; overflow:hidden; border:none; background:none; padding:2px;}
+.search{ width:80px; height:25px; border:none;  background:none;overflow:hidden}
+.nav_menu{ width:221px; overflow:hidden; margin:0 0 0 50px;}
+.parent {width:221px;height:33px;display:block;line-height:33px;margin:0 auto; text-indent:32px;margin-bottom:3px; font-weight:bold}
+.child {text-align:center;width:221px;display:block;margin:0 auto;}
+.child a{ width:221px; height:28px; line-height:28px; display:block; overflow:hidden; border-bottom:1px dashed #cacaca}
+.wenti1{ width:221px; overflow:hidden; margin:0 0 0 50px;}
+.wenti1 dl{ width:221px;font-size:12px;}
+.wenti1 dt{height:33px;color:#fff;padding-top:6px;font-weight:bold;cursor:pointer; line-height:33px; text-indent:30px; margin-bottom:2px;}
+.wenti1 dt.original1{ background:url(nav_1.jpg) no-repeat; height:33px; padding:0}
+.wenti1 dt.focus1{background:url(nav_1.jpg) no-repeat; height:33px;padding:0}
+.wenti1 dt.expand1{background:url(nav_2.jpg) no-repeat; height:33px;padding:0}
+.wenti1 dd{display:none;width:221px;margin:0 auto;}
+.wenti1 dd a{ color:#707070;width:221px;height:33px;display:block;line-height:33px; border-bottom:1px dashed #cacaca; background:url(lib5.jpg) no-repeat 8px center; text-indent:20px;}
+.wenti1 dd a.h_hover2{ color:#3b0d00; font-weight:bold; background:url(lib6.jpg) no-repeat 8px center}
+.list2{ border-bottom:1px solid #cacaca}
+.list2 li.t_bg{ background:url(bar2.jpg) no-repeat; height:35px; width:618px; color:#fff; line-height:35px; margin-bottom:6px; font-weight:bold}
+.list2 li.t_bg span,.list2 li span{ display:block; float:left; overflow:hidden; }
+.list2 li.t_bg span.N1{ width:100px; text-align:center}
+.list2 li.t_bg span.N2{ width:100px; text-align:center}
+.list2 li.t_bg span.N3{ width:100px;text-align:center}
+.list2 li.t_bg span.N4{ width:100px;text-align:center}
+.list2 li.t_bg span.N5{ width:100px;text-align:center}
+.list2 li.t_bg span.N6{ width:100px;text-align:center}
+.list2 li{height:32px; line-height:32px;}
+.list2 li.bg1{ background:#e9e9e9}
+.list2 li span.N1{ width:100px; text-align:center}
+.list2 li span.N2{ width:100px; text-align:center}
+.list2 li span.N3{ width:100px;text-align:center}
+.list2 li span.N4{ width:100px;text-align:center}
+.list2 li span.N5{ width:100px;text-align:center}
+.list2 li span.N6{ width:100px;text-align:center}
+

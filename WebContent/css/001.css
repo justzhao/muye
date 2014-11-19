@@ -1,0 +1,276 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url(../image/bks.gif);	
+	background-position: center;
+	background-attachment: fixed;
+}
+body,td,th {
+	font-family: 宋体;
+	font-size: 12px;
+	color: #000000;
+}
+.css {
+    border-color:#5a96d2; border-style:solid; border-width:1px;
+}
+A { COLOR: #000000; FONT-FAMILY: Tahoma,Arial,Verdana,宋体,; FONT-SIZE: 12px; TEXT-DECORATION: none}
+A:link {COLOR: #000000; TEXT-DECORATION: none;}
+A:visited { COLOR:#000000; TEXT-DECORATION: none;}
+A:active { COLOR: #000000;TEXT-DECORATION: none;}
+A:hover {COLOR: #990000; TEXT-DECORATION: underline}
+.white {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.white1 {
+	font-family: "宋体";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+A.bs:link {
+	COLOR: #ffffff; FONT-FAMILY: 宋体; font-weight: bold;TEXT-DECORATION: none;
+}
+A.bs:visited {
+	COLOR: #ffffff; FONT-FAMILY: 宋体;font-weight: bold; TEXT-DECORATION: none;
+}
+A.bs:hover {
+	COLOR: #ffff99; FONT-FAMILY: 宋体;font-weight: bold; TEXT-DECORATION: none;
+}
+A.bs:active {
+	COLOR: #ffffff; FONT-FAMILY: 宋体; font-weight: bold;TEXT-DECORATION: none;
+}
+
+A.bs1:link {
+	COLOR: #ffffff; FONT-FAMILY: 宋体; TEXT-DECORATION: none;
+}
+A.bs1:visited {
+	COLOR: #ffffff; FONT-FAMILY: 宋体;TEXT-DECORATION: none;
+}
+A.bs1:hover {
+	COLOR: #ffff99; FONT-FAMILY: 宋体;TEXT-DECORATION: none;
+}
+A.bs1:active {
+	COLOR: #ffffff; FONT-FAMILY: 宋体;TEXT-DECORATION: none;
+}
+
+A.bsjc:link {
+	COLOR: #ffffff; FONT-FAMILY: 宋体; font-weight: bold; TEXT-DECORATION: none;
+}
+A.bsjc:visited {
+	COLOR: #ffffff; FONT-FAMILY: 宋体;font-weight: bold; TEXT-DECORATION: none;
+}
+A.bsjc:hover {
+	COLOR: #ffff99; FONT-FAMILY: 宋体;font-weight: bold; TEXT-DECORATION: none;
+}
+A.bsjc:active {
+	COLOR: #ffffff; FONT-FAMILY: 宋体;font-weight: bold; TEXT-DECORATION: none;
+}
+
+A.hhs:link {
+	COLOR: #bc3c00; FONT-FAMILY: 宋体;font-weight: bold; TEXT-DECORATION: none;
+}
+A.hhs:visited {
+	COLOR: #bc3c00; FONT-FAMILY: 宋体;font-weight: bold;TEXT-DECORATION: none;
+}
+A.hhs:hover {
+	COLOR: #5b1e01; FONT-FAMILY: 宋体;font-weight: bold;TEXT-DECORATION: none;
+}
+A.hhs:active {
+	COLOR: #bc3c00; FONT-FAMILY: 宋体;font-weight: bold;TEXT-DECORATION: none;
+}
+
+A.hs1:link {
+	COLOR: #000000; FONT-FAMILY: 宋体;font-size: 14px; TEXT-DECORATION: none;
+}
+A.hs1:visited {
+	COLOR: #000000; FONT-FAMILY: 宋体;font-size: 14px;TEXT-DECORATION: none;
+}
+A.hs1:hover {
+	COLOR: #990000; FONT-FAMILY: 宋体;font-size: 14px;TEXT-DECORATION: underline;
+}
+A.hs1:active {
+	COLOR: #000000; FONT-FAMILY: 宋体;font-size: 14px;TEXT-DECORATION: none;
+}
+
+A.lsjs1:link {
+	color: #0061ba;FONT-FAMILY: 宋体;font-size: 14px;font-weight: bold;TEXT-DECORATION: none;
+}
+A.lsjs1:visited {
+	color: #0061ba; FONT-FAMILY: 宋体;font-size: 14px;font-weight: bold;TEXT-DECORATION: none;
+}
+A.lsjs1:hover {
+	COLOR: #990000; FONT-FAMILY: 宋体;font-size: 14px;font-weight: bold;TEXT-DECORATION: underline;
+}
+A.lsjs1:active {
+	color: #0061ba; FONT-FAMILY: 宋体;font-size: 14px;font-weight: bold;TEXT-DECORATION: none;
+}
+
+A.hs:link {
+	COLOR: #000000; FONT-FAMILY: 宋体; TEXT-DECORATION: none;
+}
+A.hs:visited {
+	COLOR: #000000; FONT-FAMILY: 宋体; TEXT-DECORATION: none;
+}
+A.hs:hover {
+	COLOR: #990000; FONT-FAMILY: 宋体; TEXT-DECORATION: underline;
+}
+A.hs:active {
+	COLOR: #000000; FONT-FAMILY: 宋体; TEXT-DECORATION: none;
+}
+.ImgButton2 {
+	BACKGROUND: url(button_2.gif);
+	BORDER-BOTTOM-COLOR: #ffffff;
+	BORDER-BOTTOM-WIDTH: 0px; 
+	BORDER-LEFT-COLOR:#ffffff;
+	BORDER-LEFT-WIDTH: 0px; 
+	BORDER-RIGHT-COLOR: #ffffff;
+	BORDER-RIGHT-WIDTH: 0px;
+	BORDER-TOP-COLOR: #ffffff; 
+    BORDER-TOP-WIDTH: 0px;
+	CURSOR: hand;
+	FONT-FAMILY: Arial;
+	HEIGHT: 20px;
+	PADDING-TOP: 2px;
+	WIDTH: 37px;
+	COLOR:#000000;
+}
+.ImgButton4 {
+	BACKGROUND: url(button_4.gif);
+	BORDER-BOTTOM-COLOR: #ffffff;
+	BORDER-BOTTOM-WIDTH: 0px; 
+	BORDER-LEFT-COLOR:#ffffff;
+	BORDER-LEFT-WIDTH: 0px; 
+	BORDER-RIGHT-COLOR: #ffffff;
+	BORDER-RIGHT-WIDTH: 0px;
+	BORDER-TOP-COLOR: #ffffff; 
+    BORDER-TOP-WIDTH: 0px;
+	CURSOR: hand;
+	FONT-FAMILY: Arial;
+	HEIGHT: 20px;
+	PADDING-TOP: 2px;
+	WIDTH: 64px;
+	COLOR:#000000;
+}
+.ImgButtonxd {
+	BACKGROUND: url(button_xd.gif);
+	BORDER-BOTTOM-COLOR: #ffffff;
+	BORDER-BOTTOM-WIDTH: 0px; 
+	BORDER-LEFT-COLOR:#ffffff;
+	BORDER-LEFT-WIDTH: 0px; 
+	BORDER-RIGHT-COLOR: #ffffff;
+	BORDER-RIGHT-WIDTH: 0px;
+	BORDER-TOP-COLOR: #ffffff; 
+    BORDER-TOP-WIDTH: 0px;
+	CURSOR: hand;
+	FONT-FAMILY: Arial;
+	HEIGHT: 18px;
+	PADDING-TOP: 2px;
+	WIDTH: 20px;
+	COLOR:#000000;
+}
+.input_text {
+        BORDER-RIGHT: #000000 1px solid; 
+		BORDER-TOP: #000000 1px solid; 
+		FONT-SIZE: 12px;
+		BORDER-LEFT: #000000 1px solid;
+		BORDER-BOTTOM: #000000 1px solid; 
+		FONT-FAMILY: arial;
+		HEIGHT: 14px; 
+		BACKGROUND-COLOR: #ffffff;
+		COLOR:#000000;
+}
+.red {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #CE0000;
+}
+.red2 {
+	font-family: "Arial, Helvetica, sans-serif;";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	color: #CE0000;
+}
+.red1{
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	color: #ff0000;
+}
+.bs2{
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	color: #ffffff;
+}
+.bs3{
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #ffffff;
+}
+.bs4{
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	color: #ffffff;
+	line-height:20px;
+}
+.jhs {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #ff0000;
+}
+
+.hsjs {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+}
+.zw{font-size: 12px;
+     line-height: 20px;
+     color: #000000;
+    }
+.hz{font-size: 12px;
+     line-height: 20px;
+     color: #ce0000;
+    }
+
+.lsjs {
+	font-family: "宋体";
+	font-size: 14px;
+	font-style: normal;
+	line-height:20px;
+	font-weight: bold;
+	color: #0061ba;
+}
+.bsjs {
+	font-family: "宋体";
+	font-size: 14px;
+	font-style: normal;
+	line-height:20px;
+	font-weight: bold;
+	color: #000000;
+}
+.HR {
+	BACKGROUND-COLOR:#333333;
+	BORDER-BOTTOM: #333333 1px dotted;
+	BORDER-LEFT: #333333 1px dotted; 
+	BORDER-RIGHT: #333333 1px dotted;
+	BORDER-TOP: #333333 1px dotted; 
+	HEIGHT: 1px
+}

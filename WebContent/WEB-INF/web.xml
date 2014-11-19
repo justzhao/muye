@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>check_qy</servlet-name>
+    <servlet-class>message.check_qy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>check_qy</servlet-name>
+    <url-pattern>/check_qy</url-pattern>
+  
+  </servlet-mapping>
+  
+      <servlet>
+
+    <servlet-name>checkHigh_qy</servlet-name>
+    <servlet-class>message.checkHigh_qy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>checkHigh_qy</servlet-name>
+    <url-pattern>/checkHigh_qy</url-pattern>
+                  
+  
+  </servlet-mapping>
+  
+  
+  
+    <servlet>
+   <servlet-name>check_login</servlet-name>
+    <servlet-class>com.menu.manager.MenuManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>check_login</servlet-name>
+    <url-pattern>/check_login</url-pattern>
+   </servlet-mapping>
+    
+
+   <servlet>
+   <servlet-name>Login</servlet-name>
+    <servlet-class>com.menu.manager.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+   </servlet-mapping>
+   <servlet>
+   <servlet-name>send_group_message</servlet-name>
+    <servlet-class>com.menu.manager.SendGroupMessage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>send_group_message</servlet-name>
+    <url-pattern>/sendGroupMessage</url-pattern>
+  </servlet-mapping>
+  
+  
+     <servlet>
+   <servlet-name>UploadFile</servlet-name>
+    <servlet-class>com.menu.manager.UploadFile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadFile</servlet-name>
+    <url-pattern>/UploadFile</url-pattern>
+  </servlet-mapping>
+
+
+  <listener>
+  <listener-class>listener.SysContextListener_qy</listener-class>
+  </listener>
+
+
+</web-app>
