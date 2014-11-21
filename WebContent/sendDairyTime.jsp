@@ -8,16 +8,17 @@
 <%@page import="bean.tagBean.Tag" %>
 <%@page import="java.io.PrintWriter"%>
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
-import="java.util.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfarming.weixin.*"
+import="java.util.*,net.sf.json.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfarming.weixin.*"
     pageEncoding="UTF-8"%>
     
     <html>
     
     <head>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-         <link rel="stylesheet" type="text/css" href="css/admin-all.css" />
+    <link rel="stylesheet" type="text/css" href="css/admin-all.css" />
     <link rel="stylesheet" type="text/css" href="css/base.css" />
   
     <link rel="stylesheet" type="text/css" href="PlugIn/jQuery/jquery-ui-1.10.2/themes/base/jquery-ui-1.8.22.custom.css"/> 
@@ -47,15 +48,15 @@ import="java.util.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfa
  	 String[] selectDepts=request.getParameterValues("selectDepts");
  	 
    
- 	String selectValue =""; //选择的提示信息
- 	String selectDptValue ="";
+ 	/* String selectValue =""; //选择的提示信息
+ 	String selectDptValue =""; */
        if(sendTime!=null){
 	   		BllManager.updateSendTime(sendTime);
          	if(selectTags!=null)
          	{
 	
  			 BllManager.updateSendTag(selectTags,"1");
-	 			List<Tag> tags = BllManager.getTagList();
+	 			//List<Tag> tags = BllManager.getTagList();
 	 			//logger.debug("the length is "+selectTags.length);
 	 			/* for(int i=0;i<selectTags.length;i++) {
 	 				for(Tag tag : tags) {
@@ -78,13 +79,16 @@ import="java.util.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfa
           	out.print("<script>alert('修改成功!')</script>");
 	} //else {
 			String tags = BllManager.getSendTag("1");
-			String[] tagArr = tags.split("|");
+			String[] tagArr = tags.split("\\|");
+			
+			JSONArray jsonArr = JSONArray.fromObject(tagArr);
+			//logger.debug("teh json is "+jsonArr);
 			List<Tag> tagslist = BllManager.getTagList();
 			
-			for(int i=0;i<tagArr.length;i++) {
+			/* for(int i=0;i<tagArr.length;i++) {
 				for(Tag tag : tagslist) {
 					
-					logger.debug("the my id is "+tagArr[i]+"the tag id is "+tag.getTagid() );
+				//	logger.debug("the my id is "+tagArr[i]+"the tag id is "+tag.getTagid() );
 					if(tagArr[i].equals( tag.getTagid())) {
 						selectValue += tag.getTagname()+" |";
 						//logger.debug("select value~~~"+tag.getTagname());
@@ -92,16 +96,17 @@ import="java.util.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfa
 				}
 				
 			}
-			selectValue= selectValue.substring(0, selectValue.length() -1);
+			selectValue= selectValue.substring(0, selectValue.length() -1); */
 		//}
 			String dpts = BllManager.getSendTag("2");
-			String[] dptArr = dpts.split("|");
-			List<Department> dptslist = BllManager.getDepartmentList();
+			String[] dptArr = dpts.split("\\|");
+			JSONArray jsondptArr = JSONArray.fromObject(dptArr);
+			/* List<Department> dptslist = BllManager.getDepartmentList();
 			
 			for(int i=0;i<dptArr.length;i++) {
 				for(Department dept : dptslist) {
 					
-					logger.debug("the my id is "+dptArr[i]+"the tag id is "+dept.getId() );
+					//logger.debug("the my id is "+dptArr[i]+"the tag id is "+dept.getId() );
 					if(dptArr[i].equals( dept.getId())) {
 						selectDptValue += dept.getName()+" |";
 						//logger.debug("select value~~~"+tag.getTagname());
@@ -109,7 +114,7 @@ import="java.util.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfa
 				}
 				
 			}
-			selectDptValue= selectDptValue.substring(0, selectDptValue.length() -1);
+			selectDptValue= selectDptValue.substring(0, selectDptValue.length() -1); */
    
    
 	List<Tag> listTags=BllManager.getTagList();
@@ -141,6 +146,13 @@ import="java.util.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfa
 <script type="text/javascript">
 
 $(function(){
+	 var valArr = new  Array();
+	 valArr = <%=jsonArr%>;
+	 var dptArr = new Array();
+	 dptArr =<%=jsondptArr%>;
+	 //alert(valArr);
+	
+		 
 	 $("#selectTime").multiselect({
 		 
 	
@@ -164,6 +176,16 @@ $(function(){
 	        minWidth:"160"
 		 
 		 });
+	 /* $("#selectTags").val(valArr);
+	 $("#selectTags").multiselect("refresh"); */
+	 
+	 $('#selectTags option').each(function(i){
+		// alert(this.value);
+		   if(valArr.indexOf(this.value)!=-1){
+			   this.selected=true;
+		   }
+		 }); 
+	 $("#selectTags").multiselect("refresh");
 	 
 	 $("#selectDepts").multiselect({
 		 
@@ -174,6 +196,9 @@ $(function(){
 		    selectedText:"#选择",
 		    minWidth:"160"
 		 });
+	 
+	 $("#selectDepts").val(dptArr);
+	 $("#selectDepts").multiselect("refresh");
 	 
 	});
 
@@ -220,7 +245,7 @@ $(function(){
 
 	<span >请选择需要推送日报的角色(多选):           </span>
 	<%=selectString1 %> <span >没有选择不修改   </span>
-	<br/><span>您当前选择的角色有：(<%=selectValue %>)</span>
+	<%-- <br/><span>您当前选择的角色有：(<%=selectValue %>)</span> --%>
 
 
 
@@ -231,7 +256,7 @@ $(function(){
 
 	<span >请选择需要推送日报的部门(多选):           </span>
 	<%=selectDeps %> <span >没有选择不修改   </span>
-	<br/><span>您当前选择的部门有：(<%=selectDptValue %>)</span>
+	<%-- <br/><span>您当前选择的部门有：(<%=selectDptValue %>)</span> --%>
 
 
 </div>

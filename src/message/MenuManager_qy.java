@@ -45,11 +45,22 @@ public class MenuManager_qy {
 		
 		//BllManager.updateSendTime("12");
 		//logger.debug( BllManager.getSendTime());
+		/**
         for(Cow cow  :   Services.getDiseaseInfos("马鞍山"))
         {
         	logger.debug("the cow name is "+cow.getCowBarn());
         	
         }
+        */
+		/**
+		for( User u:  BllManager.getAllBindUsers())
+		{
+			logger.debug("the bind user is "+u.getName());
+			BllManager.addTagUser(u.getName(), u.getPassword(), u.getOpenId());
+		}*/
+		BllManager.getUserByTag("14");
+		
+	//	BllManager.refreshTagList();
 		//BllManager.getTagList();
 		//BllManager.getAllBindUsers();
 	//	BllManager.getUserByTag("4");

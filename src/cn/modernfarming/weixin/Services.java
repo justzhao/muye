@@ -227,7 +227,7 @@ public class Services {
 			if (rsL1.next()) {
 				int cnt = rsL1.getInt("cnt");
 				//int cnt=16;
-				if (cnt == 16) {
+				if (cnt >0) {
 					
 					
 					
@@ -257,7 +257,7 @@ public class Services {
 						textMessage.settotag(sendTag);
 						//选择部门 2代表部门
 						String sendDept=BllManager.getSendTag("2");
-						textMessage.settoparty(sendDept);
+						//textMessage.settoparty(sendDept);
 						textMessage.setagentid("1");
 						AccessToken_qy aToken = AccessTokenUtil_qy
 								.getAccessToken(AccessTokenUtil_qy.sCorpID,

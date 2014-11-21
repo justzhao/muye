@@ -70,15 +70,15 @@ public class AccessTokenUtil_qy {
 	public static String sEncodingAESKey = "Rcn9G8I8MdbaMjld3rVxC2Kavaf9qmYKBcsw3yRaxON";
 	public static String sCorpSecret = "eIbIPEFUur1u3TQk3x_l3J80KmQvHSmVXfzpGjUORmTmqvP4ALWoUgozWNmtyLFe";
 	
-	
+
+
 	/**
-	
 	public static String sToken = "OiingS5ivw8GfnQAFAcaG43yr";
 	public static String sCorpID = "wx93ee6ef7d7810920";
 	public static String sEncodingAESKey = "HK9XxDXaVgda6lzec5wbAU7dQ1NmPM5jvW76jdvRQkS";
 	public static String sCorpSecret = "T0oh9HkWrLNbN1nD376N1pqIp3qK6naEkJkVP14NMIIBAAPAQuOuuoWNUouK8U5b";
-	
-	*/
+		*/
+
 	// public static String AppId = "wx1315792412703dfd";
 	// public static String AppSecret = "86fcdf43e0913514853c0c635a2cd56e";
 

@@ -22,8 +22,8 @@ public class WxServiceLocator extends org.apache.axis.client.Service implements 
     }
 
     // Use to get a proxy class for WxServiceSoap
-    private java.lang.String WxServiceSoap_address = "http://weixin.xdmy.co:8080/mfWxService/WxService.asmx";
-// private java.lang.String WxServiceSoap_address = "http://localhost:8080/mfWxService/WxService.asmx";
+    private java.lang.String WxServiceSoap_address = "http://220.178.243.125/mfWxService/WxService.asmx";
+
     public java.lang.String getWxServiceSoapAddress() {
         return WxServiceSoap_address;
     }
