@@ -48,73 +48,33 @@ import="java.util.*,net.sf.json.*,java.sql.*,db.Connect,org.apache.logging.log4j
  	 String[] selectDepts=request.getParameterValues("selectDepts");
  	 
    
- 	/* String selectValue =""; //选择的提示信息
- 	String selectDptValue =""; */
+
        if(sendTime!=null){
 	   		BllManager.updateSendTime(sendTime);
          	if(selectTags!=null)
          	{
 	
  			 BllManager.updateSendTag(selectTags,"1");
-	 			//List<Tag> tags = BllManager.getTagList();
-	 			//logger.debug("the length is "+selectTags.length);
-	 			/* for(int i=0;i<selectTags.length;i++) {
-	 				for(Tag tag : tags) {
-	 					
-	 					//logger.debug("the my id is "+selectTags[i]+"the tag id is "+tag.getTagid() );
-	 					if(selectTags[i].equals( tag.getTagid())) {
-	 						
-	 						selectValue += tag.getTagname()+"|";
-	 						//logger.debug("select value~~~"+tag.getTagname());
-	 					}
-	 				}
-	 				
-	 			}
-	 			selectValue= selectValue.substring(0, selectValue.length()  -1); */
+	
      		} 
           	if(selectDepts!=null){
           	   BllManager.updateSendTag(selectDepts,"2");
           	}
           	             	
           	out.print("<script>alert('修改成功!')</script>");
-	} //else {
+	} 
 			String tags = BllManager.getSendTag("1");
 			String[] tagArr = tags.split("\\|");
 			
 			JSONArray jsonArr = JSONArray.fromObject(tagArr);
-			//logger.debug("teh json is "+jsonArr);
-			List<Tag> tagslist = BllManager.getTagList();
+
+
 			
-			/* for(int i=0;i<tagArr.length;i++) {
-				for(Tag tag : tagslist) {
-					
-				//	logger.debug("the my id is "+tagArr[i]+"the tag id is "+tag.getTagid() );
-					if(tagArr[i].equals( tag.getTagid())) {
-						selectValue += tag.getTagname()+" |";
-						//logger.debug("select value~~~"+tag.getTagname());
-					}
-				}
-				
-			}
-			selectValue= selectValue.substring(0, selectValue.length() -1); */
-		//}
+
 			String dpts = BllManager.getSendTag("2");
 			String[] dptArr = dpts.split("\\|");
 			JSONArray jsondptArr = JSONArray.fromObject(dptArr);
-			/* List<Department> dptslist = BllManager.getDepartmentList();
-			
-			for(int i=0;i<dptArr.length;i++) {
-				for(Department dept : dptslist) {
-					
-					//logger.debug("the my id is "+dptArr[i]+"the tag id is "+dept.getId() );
-					if(dptArr[i].equals( dept.getId())) {
-						selectDptValue += dept.getName()+" |";
-						//logger.debug("select value~~~"+tag.getTagname());
-					}
-				}
-				
-			}
-			selectDptValue= selectDptValue.substring(0, selectDptValue.length() -1); */
+
    
    
 	List<Tag> listTags=BllManager.getTagList();
@@ -150,7 +110,7 @@ $(function(){
 	 valArr = <%=jsonArr%>;
 	 var dptArr = new Array();
 	 dptArr =<%=jsondptArr%>;
-	 //alert(valArr);
+
 	
 		 
 	 $("#selectTime").multiselect({
@@ -176,11 +136,10 @@ $(function(){
 	        minWidth:"160"
 		 
 		 });
-	 /* $("#selectTags").val(valArr);
-	 $("#selectTags").multiselect("refresh"); */
+
 	 
 	 $('#selectTags option').each(function(i){
-		// alert(this.value);
+
 		   if(valArr.indexOf(this.value)!=-1){
 			   this.selected=true;
 		   }
