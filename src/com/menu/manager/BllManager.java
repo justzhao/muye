@@ -1,5 +1,6 @@
 package com.menu.manager;
 
+import java.io.File;
 import java.io.IOException;
 import java.rmi.server.LogStream;
 import java.security.KeyManagementException;
@@ -31,6 +32,7 @@ import db.Connect;
 
 import util.AccessTokenUtil_qy;
 import util.MessageUtil_qy;
+import bean.fileBean.UpFile;
 import bean.httpsBean.AccessToken_qy;
 import bean.menuBean.NormalButton;
 import bean.responseMessageBean.Article;
@@ -225,7 +227,7 @@ public class BllManager {
 				}
 				
 			}
-			message.settoparty(partyString);
+			message.settouser(partyString);
 		}
 		message.setagentid("1");
 		int rslt = AccessTokenUtil_qy.sendImageMessage(
@@ -576,18 +578,26 @@ public class BllManager {
 	//   return true;
    }   
    
+   public static void updateSendPermission(String []tags)
+   {
+	   UpPermission threadUp=new UpPermission();
+		threadUp.setTags(tags);
+		Thread thread=new Thread(threadUp);
+		thread.start();
+   }
+   
    public static String getSendTag(String type){
 
 	   
 	  return DaoManager.getSendTag(type);
    }
    
-   public  static void getUserByTag (String tagId) throws KeyManagementException, NoSuchAlgorithmException, NoSuchProviderException, IOException {
+   public  static List<User> getUserByTag (String tagId) throws KeyManagementException, NoSuchAlgorithmException, NoSuchProviderException, IOException {
 	   
 		 AccessToken_qy aToken = AccessTokenUtil_qy.getAccessToken(AccessTokenUtil_qy.sCorpID,
 					AccessTokenUtil_qy.sCorpSecret);
 		 
-		 AccessTokenUtil_qy.getUserByTag(aToken.getAccessToken(),tagId);
+	 return	 AccessTokenUtil_qy.getUserByTag(aToken.getAccessToken(),tagId);
 		 
 	//	 return true;
 	   
@@ -635,6 +645,33 @@ public static boolean addTagforUser(Tag tag) throws KeyManagementException, NoSu
    }
 
 
+/**
+ * @param 
+ * @throws IOException 
+ * @throws NoSuchProviderException 
+ * @throws NoSuchAlgorithmException 
+ * @throws KeyManagementException 
+ * 
+ */
+public static String upLoadFile(String path) throws KeyManagementException, NoSuchAlgorithmException, NoSuchProviderException, IOException
+{
+	 AccessToken_qy aToken = AccessTokenUtil_qy.getAccessToken(AccessTokenUtil_qy.sCorpID,
+				AccessTokenUtil_qy.sCorpSecret);
+
+	 
+	 String temppath="\\muye\\img\\";
+	 int x=1+(int)(Math.random()*10);
+	 String filepath=	 System.getProperty("user.dir").replace("bin", "webapps")+temppath+x+".jpg";
+	 logger.debug(filepath);
+	 File file=new File(filepath);
+
+
+  JSONObject jObject=	AccessTokenUtil_qy.upload(aToken.getAccessToken(), "image", file); 
+//AccessTokenUtil_qy.upLoadFile(path, aToken.getAccessToken(),uf);
+
+	return jObject.getString("media_id");
+	//return "xx";
+}
 
 
 }

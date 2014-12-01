@@ -37,6 +37,8 @@ import="java.util.*,net.sf.json.*,java.sql.*,db.Connect,org.apache.logging.log4j
     <%
     
     Logger logger = LogManager.getLogger(request.getRequestURI());
+    
+    
      request.setCharacterEncoding("UTF-8");
      response.setCharacterEncoding("UTF-8");
      String sendTime=request.getParameter("selectTime");
@@ -74,13 +76,16 @@ import="java.util.*,net.sf.json.*,java.sql.*,db.Connect,org.apache.logging.log4j
 			String dpts = BllManager.getSendTag("2");
 			String[] dptArr = dpts.split("\\|");
 			JSONArray jsondptArr = JSONArray.fromObject(dptArr);
+			
+			double dairyTime=BllManager.getSendTime()/60.0;
+//			logger.debug("the dairyTime is "+dairyTime);
 
    
    
 	List<Tag> listTags=BllManager.getTagList();
 	   
 
-	String selectString1="<select style=\"width:100px \" name=\"selectTags\" id=\"selectTags\" multiple=\"multiple\">";
+	String selectString1="<select colNum=\"3\" style=\"width:100px \" name=\"selectTags\" id=\"selectTags\" multiple=\"multiple\">";
 	
 	for (Tag tag : listTags) {
 		
@@ -110,7 +115,10 @@ $(function(){
 	 valArr = <%=jsonArr%>;
 	 var dptArr = new Array();
 	 dptArr =<%=jsondptArr%>;
-
+	 
+	 var dairyTime=<%=dairyTime%>;
+	 
+    // alert(dairyTime);
 	
 		 
 	 $("#selectTime").multiselect({
@@ -124,6 +132,9 @@ $(function(){
 		 
 		 
 	 });
+	 
+	 $("#selectTime").val(dairyTime);
+	 $("#selectTime").multiselect("refresh");
 	 
 	 
 	 $("#selectTags").multiselect({
@@ -237,6 +248,12 @@ $(function(){
     </div>
 
     <div class="clear"></div>
+    
+    <div id="selec" style="width:50%;height:50%;margin-left:20%;margin-top:20%">
+    
+    
+    </div>
+    
 </body>
 </html>
 

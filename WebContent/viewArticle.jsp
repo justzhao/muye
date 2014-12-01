@@ -44,9 +44,16 @@ import="java.util.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfa
     <script src="PlugIn/jQuery/jquery-1.11.1.js" type="text/javascript"></script>
     <script src="PlugIn/jQuery/jquery-ui-1.10.2/ui/jquery-ui.js" type="text/javascript"></script>
     <script src="PlugIn/jQuery/pageScript.js" type="text/javascript"></script>
+<style>    
+    a{
+    
+     text-decoration:none;
+    }
+    
+    </style>
 </head>
 <body>
-      <div class="alert alert-info">当前位置<b class="tip"></b>菜单管理<b class="tip"></b>三级菜单列表</div>
+      <div class="alert alert-info">当前位置<b class="tip"></b><a style="color:#3a87ad" href="3levelMenu.jsp"> 菜单管理 </a><b class="tip"></b>三级菜单列表</div>
 <div class="right1">
 
 
@@ -94,48 +101,6 @@ import="java.util.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfa
 </table>
 
 
-<!--  
-      <ul class="list2">
-        <li class="t_bg">
-          <span class="N1">编号</span>
-          <span class="N2">标题</span>
-    
-          <span class="N3">背景图片链接</span>
-     
-          <span class="N4">链接地址</span>
-          <span class="N5">操作</span>
-   </li>
-   <%  for(Article article: articlelLists ){ 
-	  
-	   %>
-     
-            <li class="bg1">
-            
-          <span class="N1"><%= BllManager.subString(article.getId())  %> </span>
-          <span class="N2"> <%=BllManager.subString(article.getTitle()) %></span>
-
-          <span class="N3"> <%=BllManager.subString(article.getPicUrl()) %></span>
-      
-            <span class="N4"> 
-            <%=BllManager.subString(article.getUrl())%>
-            </span>
-            
-            <span class="N5">
-            
-      <input type="button" value="编辑" name="add" url="editArticle.jsp?Id=<%=article.getId()%>" /> 
-   
-      <input type="button" value="删除" name="del" Id="<%=article.getId()%>" Key="<%=Key%>" />      
-
-               </span>
-
-        </li>
-      <%} %> 
-
-
-
-        </ul>
-
--->
 </div>
 
 

@@ -84,9 +84,9 @@
 				txt += "<tr>";
 				for (int i = 2; i <= count; i++) {
 					if (i == 11) {
-						txt += "<td>" + rsL1.getString(i) + "%</td>";
+						txt += "<td>" + (rsL1.getString(i)!=null?rsL1.getString(i):"") + "%</td>";
 					} else {
-						txt += "<td>" + rsL1.getString(i) + "</td>";
+						txt += "<td>" + (rsL1.getString(i)!=null?rsL1.getString(1):"") + "</td>";
 					}
 				}
 				txt += "</tr>";
@@ -134,7 +134,7 @@
 	type="text/javascript"></script>
 <script src="PlugIn/jQuery/jquery-ui-1.10.2/ui/jquery.ui.datepicker.js"
 	type="text/javascript"></script>
-<title>日报</title>
+<title>历史日报</title>
 <style>
 .search{
 background:url(images/bbg.jpg) repeat top center;
@@ -158,7 +158,7 @@ if (typeof WeixinJSBridge == "undefined"){
 </script>
 </head> 
 <body>
-<div id="contetn">
+<div id="content">
 	<%=txt_form%>
 	</div>
 
@@ -168,9 +168,13 @@ if (typeof WeixinJSBridge == "undefined"){
 	$("#dt1").datepicker({
 		dateFormat : 'yy-mm-dd'
 	});
-	$("#dt1").datepicker('setDate', (new Date()).getDate()-32);
+
+	$("#dt1").datepicker('setDate', (new Date()).getDate()-39);
 	$("#dt2").datepicker({
 		dateFormat : 'yy-mm-dd'
 	});
 	$("#dt2").datepicker('setDate', new Date());
+	
+	
+	//alert(new Date().getDate()-7+"now is "+new Date());
 </script>

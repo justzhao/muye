@@ -9,6 +9,7 @@ import java.util.List;
 
 import db.Connect;
 import util.AccessTokenUtil_qy;
+import util.MessageUtil_qy;
 import bean.Cow.Cow;
 import bean.httpsBean.AccessToken_qy;
 import bean.menuBean.Button;
@@ -24,6 +25,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.menu.manager.BllManager;
 import com.menu.manager.DaoManager;
+import com.menu.manager.UpPermission;
 
 import cn.modernfarming.weixin.Services;
 
@@ -58,8 +60,8 @@ public class MenuManager_qy {
 			logger.debug("the bind user is "+u.getName());
 			BllManager.addTagUser(u.getName(), u.getPassword(), u.getOpenId());
 		}*/
-		BllManager.getUserByTag("14");
-		
+		//BllManager.getUserByTag("14");
+		//logger.debug(BllManager.upLoadFile(""));
 	//	BllManager.refreshTagList();
 		//BllManager.getTagList();
 		//BllManager.getAllBindUsers();
@@ -69,9 +71,29 @@ public class MenuManager_qy {
 	//	BllManager.createTagList();
 		//Services.getAllJobList();
 		//Services.CheckUser("aocheng", "ac");
-	 // BllManager.addTagUser("aocheng", "ac", "ljh");
+	//  BllManager.addTagUser("aocheng", "ac", "ljh");
+	
+		//BllManager.getUserByTag("1");
 	//	BllManager.IsCheckPermisssion("1","12");//1是用户id，12是tagID
- //  BllManager.getTagList();
+		
+	if(BllManager.getSendTag("4").indexOf("1")<0)
+		{
+			logger.debug("NO");
+		}else {
+			logger.debug("YES");
+		}
+		
+		/**
+		String [] str=new String[]{"1","2"};
+		
+		
+		UpPermission threadUp=new UpPermission();
+		threadUp.setTags(str);
+		Thread thread=new Thread(threadUp);
+		thread.start();
+		System.out.print("xxsfsadfsadf");
+		*/
+		//  BllManager.getTagList();
 		
  //Services.CheckBind("1");
 	//System.out.printf(Services.getCowInfo("01115728"));
@@ -81,6 +103,10 @@ public class MenuManager_qy {
 		
 		//Services.getDiseaseInfoCount("马鞍山");
 
+		//String MediaId=BllManager.upLoadFile("");
+	//	String []TO=new String[]{"1"};
+	//	BllManager.sendImageMessage(TO,MediaId,MessageUtil_qy.REQ_MESSAGE_TYPE_IMAGE);
+		
 		
 	//	Services.getDiseaseCowsInfoHtml("马鞍山", "1");
 //BllManager.addTagforUser()
@@ -95,13 +121,13 @@ public class MenuManager_qy {
 		//test();
 		//BllManager.addSearchType("ljh");
 	//	DaoManager.updateSearchType("breed", "hxh");
-		/**
+/*
 		try {
 			AccessToken_qy aToken = AccessTokenUtil_qy.getAccessToken(AccessTokenUtil_qy.sCorpID,
 					AccessTokenUtil_qy.sCorpSecret);
 			if (null != aToken) {
 				int result = AccessTokenUtil_qy.createMenu(getMenu(),
-						aToken.getAccessToken(),"2");
+						aToken.getAccessToken(),"1");
 				if (0 != result) {
 					logger.debug("errcode" + result);
 				} else {
@@ -122,7 +148,7 @@ public class MenuManager_qy {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+	*/	
 	}
 
 	/**

@@ -26,7 +26,7 @@ public class ExportHistoryBean_qy extends TimerTask {
 	private static Logger logger = LogManager.getLogger(ExportHistoryBean_qy.class.getName());
 	private static final int C_SCHEDULE_HOUR_BEGIN = BllManager.getSendTime();
   //private static final int C_SCHEDULE_HOUR_BEGIN = 600;// 
-	private static final int C_SCHEDULE_HOUR_END = 1200;// 
+	private static final int C_SCHEDULE_HOUR_END = 780;// 
 	private static boolean isRunning = false;
 	private ServletContext context = null;
 

@@ -270,7 +270,12 @@ public class CoreService_qy {
 				textMessage.setCreateTime(new Date().getTime());
 				textMessage.setMsgType(MessageUtil_qy.RESP_MESSAGE_TYPE_TEXT);
          
-				
+			   	if(BllManager.getSendTag("4").indexOf(fromUserName)<0)
+						{
+					       textMessage.setContent("您没有权限查询,请联系管理员");
+						}else {
+							
+						
 		
 				if (!Services.CheckBind(fromUserName).equals("")) {
 					
@@ -304,12 +309,13 @@ public class CoreService_qy {
 					      
 					      textMessage.setContent(txt_temp);
 					  }
-				  logger.debug("okokokokokoko");
+				 // logger.debug("okokokokokoko");
 				} else {
 					textMessage
 							.setContent("您好，您还没有绑定工号！不能进行查询！请通过菜单【在线办公】->【用户绑定】进入绑定界面进行操作！");
 				}
                     
+				}
                 //字符串转成XML
 				respMessage = MessageUtil_qy.textMessageToXml(textMessage);
 
@@ -414,24 +420,44 @@ public class CoreService_qy {
 					logger.debug("EventKey:" + eventKey);
 					
 					//响应key为数字的
-					List<Article> articleslList=new ArrayList<Article>();
+					/*
 					
-					// 
-					articleslList=BllManager.getArticlesListByKey(eventKey,fromUserName);
-					if(articleslList.size()>0){
-					ImageTextMessage itm = new ImageTextMessage();
-					itm.setFromUserName(toUserName);
-					itm.setToUserName(fromUserName);
-					itm.setCreateTime(new Date().getTime());
-					itm.setMsgType(MessageUtil_qy.RESP_MESSAGE_TYPE_NEWS);
-					itm.setArticleCount(articleslList.size());
-					itm.setArticles(articleslList);
-				
-					respMessage = MessageUtil_qy.newsMessageToXml(itm);
-					}else {
-						respMessage = getAddress(toUserName, fromUserName);
-					}
-
+					if(eventKey.equals("14"))
+					{
+						
+						String MediaId=BllManager.upLoadFile("");
+						String []TO=new String[]{fromUserName};
+						BllManager.sendImageMessage(TO,MediaId,MessageUtil_qy.REQ_MESSAGE_TYPE_IMAGE);
+						
+					}else 
+					{
+						*/
+					
+					
+								List<Article> articleslList=new ArrayList<Article>();
+								
+								// 
+								articleslList=BllManager.getArticlesListByKey(eventKey,fromUserName);
+								if(articleslList.size()>0)
+								
+								
+								{
+								ImageTextMessage itm = new ImageTextMessage();
+								itm.setFromUserName(toUserName);
+								itm.setToUserName(fromUserName);
+								itm.setCreateTime(new Date().getTime());
+								itm.setMsgType(MessageUtil_qy.RESP_MESSAGE_TYPE_NEWS);
+								itm.setArticleCount(articleslList.size());
+								itm.setArticles(articleslList);
+							
+								respMessage = MessageUtil_qy.newsMessageToXml(itm);
+								
+								
+								
+								}else {
+									respMessage = getAddress(toUserName, fromUserName);
+								}
+					//}
 				}
 			}
 			WXBizMsgCrypt c = new WXBizMsgCrypt(AccessTokenUtil_qy.sToken,

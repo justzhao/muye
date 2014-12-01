@@ -22,6 +22,10 @@
 	response.sendRedirect("NotWeixin.jsp");
 	}
 		
+	if(BllManager.getSendTag("4").indexOf(openID)<0)
+	{
+		response.sendRedirect("NotPermission.jsp");
+	}
 	String txt = "", dt = "",txt_form="";
 	
 	/**

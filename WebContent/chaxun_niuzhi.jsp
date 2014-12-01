@@ -16,11 +16,17 @@
 	if(openID!=null){
 		if(Services.CheckBind(openID).equals("")){
 				response.sendRedirect("MIS_Bind.jsp?OpenID="+openID);
+				return;
 		}
 	}else{
 	response.sendRedirect("NotWeixin.jsp");
+	return;
 	}
-	
+	if(BllManager.getSendTag("4").indexOf(openID)<0)
+	{
+		response.sendRedirect("NotPermission.jsp");
+		return;
+	}
 	String txt="", txt_q = "";
 	//12是牧场厂长
 	

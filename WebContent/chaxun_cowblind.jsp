@@ -16,9 +16,16 @@
 	if(openID!=null){
 		if(Services.CheckBind(openID).equals("")){
 				response.sendRedirect("MIS_Bind.jsp?OpenID="+openID);
+				return;
 		}
 	}else{
 	response.sendRedirect("NotWeixin.jsp");
+	return;
+	}
+	if(BllManager.getSendTag("4").indexOf(openID)<0)
+	{
+		response.sendRedirect("NotPermission.jsp");
+		return;
 	}
 	//牧场厂长来查
 	
@@ -112,7 +119,7 @@ if (typeof WeixinJSBridge == "undefined"){
 <style>
 td{
 border:1px solid gray;
-font-size:11px;
+
 }
 th{
 border:1px solid gray;

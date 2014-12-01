@@ -24,13 +24,13 @@
 	String Dt2 = request.getParameter("dt2");
 	String farmName = request.getParameter("farmName");
 
-	txt += "<div><table width=\"98%\" id=\"table-custom-2\" data-mode=\"columntoggle\" class=\"ui-body-d ui-shadow table-stripe ui-responsive\" data-column-btn-theme=\"b\" data-column-btn-text=\"选择要查看的列\" data-column-popup-theme=\"a\"><tr><th colspan=\"10\">"
+	txt += "<div><table width=\"98%\" id=\"table-custom-2\" data-mode=\"columntoggle\" class=\"ui-body-d ui-shadow table-stripe ui-responsive\" data-column-btn-theme=\"b\" data-column-btn-text=\"选择要查看的列\" data-column-popup-theme=\"a\"><tr><th colspan=\"10\">  <span style=\"font-size: 18px;\" class=\"STYLE7\">"
 			+ farmName
 			+ " "
 			+ Dt1
 			+ "~"
 			+ Dt2
-			+ "日数据</th></tr><tr class=\"ui-bar-d\"><th>日期</th><th>总产量</th><th>成母牛单产</th><th>泌乳牛单产</th><th>蛋白质</th><th>脂肪</th><th>干物质</th><th>微生物</th><th>体细胞</th><th data-priority=\"1\">干奶牛比例</th></tr>";
+			+ "日数据 </span></th></tr><tr class=\"ui-bar-d\"><th>日期</th><th>总产量</th><th>成母牛单产</th><th>泌乳牛单产</th><th>蛋白质</th><th>脂肪</th><th>干物质</th><th>微生物</th><th>体细胞</th><th data-priority=\"1\">干奶牛比例</th></tr>";
 	if (Dt1 != null) {
 
 		try {
@@ -196,7 +196,7 @@
 
 	}
 	txt += "</table></div>";
-	logger.debug("the x is "+ChartX);
+	//logger.debug("the ChartData is "+ChartData);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -235,7 +235,7 @@
 <!-- <script src="PlugIn/jQuery/Highcharts-4.0.3/js/modules/exporting.js"
 	type="text/javascript"></script> -->
 
-<title>日报</title>
+<title>历史日报</title>
 <style>
 a {
 	font-size: 44px;
@@ -303,6 +303,9 @@ th {
 			},
 			xAxis : {
 				categories : [<%=ChartX %>],
+				title : {
+					text : '日期'
+				},
 				labels : {
 					 style: {
 						
@@ -334,6 +337,8 @@ th {
 				data : [<%=ChartData  %>]
 			} ]
 		});
+		
+		
 		$('#container1').highcharts({
 			title : {
 				text : '',
@@ -346,6 +351,9 @@ th {
 			},
 			xAxis : {
 				categories : [<%=ChartX  %>],
+				title : {
+					text : '日期'
+				},
 				labels : {
 					 style: {
 						

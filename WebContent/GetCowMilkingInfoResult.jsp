@@ -1,4 +1,4 @@
-
+﻿
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="bean.Cow.Cow"%>
 <%@page import="com.menu.manager.BllManager"%>
@@ -6,17 +6,9 @@
 	import="java.util.*,java.net.URLEncoder,net.sf.json.*,java.sql.*,db.Connect,org.apache.logging.log4j.*,cn.modernfarming.weixin.*,cn.modernfarming.mis.*,java.util.Date"
 	pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("utf-8");  
-response.setCharacterEncoding("utf-8"); 
+	request.setCharacterEncoding("utf-8");
 	Logger logger = LogManager.getLogger(request.getRequestURI());
 
-    //更新查询种类，牛只，疾病，繁殖
-	
-	
-    
-    HttpSession mySession=request.getSession();
-    
-    
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
@@ -28,15 +20,14 @@ response.setCharacterEncoding("utf-8");
 	String MaxY="",MinY="";
 	String rows="0";
 	int pageSize=1;
-	if(openID!=null){
-		if(Services.CheckBind(openID).equals("")){
-				response.sendRedirect("MIS_Bind.jsp?OpenID="+openID);
+	if (openID != null) {
+		if (Services.CheckBind(openID).equals("")) {
+			response.sendRedirect("MIS_Bind.jsp?OpenID=" + openID);
 		}
-	}else{
-	response.sendRedirect("NotWeixin.jsp");
+	} else {
+		response.sendRedirect("NotWeixin.jsp");
 	}
-		
-	String txt = "", dt = "",txt_form="";
+String txt = "", dt = "",txt_form="";
 	
 	/**
 	if(!BllManager.IsCheckPermisssion(openID,"12"))
@@ -45,13 +36,7 @@ response.setCharacterEncoding("utf-8");
 		 txt_form="";
 	}else{
 	*/
-	 txt_form = "<form id=form1 action=\"GetCowMilkingInfoResult.jsp\" method=\"post\" target=\"_self\">";
-	txt_form += "<label for=\"cowID\"></label><input id=\"cowID\" name=\"cowID\" type=\"text\" placeholder=\"请输入牛号查询\" />";
-	// txt_form+="<input id=\"farmName\" name=\"farmName\" type=\"text\" />";
-	txt_form += "<button class=\"search\"; onclick=\"form1.submit();\" ><div style=\"color:white;\">查询</div></button>";
-	
-		
-	txt_form += "</form>";
+
 
 
 
@@ -145,18 +130,16 @@ response.setCharacterEncoding("utf-8");
 	
 	}
 	
-
-
-
 %>
-
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- meta name="viewport"
+	content="device-width,device-height,initial-scale=1,user-scalable=1" / -->
+<meta name="viewport" content=""/ >
 
-<meta name="viewport" content="device-width,device-height,initial-scale=1,user-scalable=1" >
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link
@@ -170,7 +153,6 @@ response.setCharacterEncoding("utf-8");
 	rel="stylesheet" type="text/css" />
 <link href="PlugIn/jQuery/jquery-ui-1.10.2/themes/base/jquery-ui.css"
 	rel="stylesheet" type="text/css" />
-	
 <script src="PlugIn/jQuery/jquery-1.11.1.js" type="text/javascript"></script>
 <script
 	src="PlugIn/jQuery/jquery.mobile-1.4.3/jquery.mobile-1.4.3.min.js"
@@ -180,11 +162,14 @@ response.setCharacterEncoding("utf-8");
 	type="text/javascript"></script>
 <script src="PlugIn/jQuery/jquery-ui-1.10.2/ui/jquery.ui.datepicker.js"
 	type="text/javascript"></script>
-	<script src="PlugIn/jQuery/Highcharts-4.0.3/js/highcharts_1.js"
-	type="text/javascript"></script>	
-<title>产奶量查询</title>
-<style>
 
+<script src="PlugIn/jQuery/Highcharts-4.0.3/js/highcharts_1.js"
+	type="text/javascript"></script>
+<!-- <script src="PlugIn/jQuery/Highcharts-4.0.3/js/modules/exporting.js"
+	type="text/javascript"></script> -->
+
+<title>奶量查询结果</title>
+<style>
 *{
  text-shadow: none !important;
 }
@@ -224,39 +209,34 @@ background:url(images/bbg.jpg) repeat top center;
  font-size:16px;
 }
 
-
-
 </style>
 <script type="text/javascript">
-function onBridgeReady(){
- WeixinJSBridge.call('hideOptionMenu');
-}
+	function onBridgeReady() {
+		WeixinJSBridge.call('hideOptionMenu');
+	}
 
-if (typeof WeixinJSBridge == "undefined"){
-    if( document.addEventListener ){
-        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-    }else if (document.attachEvent){
-        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
-        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-    }
-}else{
-    onBridgeReady();
-}
+	if (typeof WeixinJSBridge == "undefined") {
+		if (document.addEventListener) {
+			document.addEventListener('WeixinJSBridgeReady', onBridgeReady,
+					false);
+		} else if (document.attachEvent) {
+			document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+			document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		}
+	} else {
+		onBridgeReady();
+	}
 </script>
-</head> 
+</head>
 <body>
+<a onclick="history.back();">返回</a>
+	<br />
 
-
-	
-	
-	<%=txt_form %>
-
-<div>
 <table width="100%" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive\" data-column-btn-theme=\"b\" data-column-btn-text=\"选择要查看的列\" data-column-popup-theme=\"a\"><tr><th colspan="25" > <span class="STYLE7">
 			<%=  (cowID == null ? "":cowID)%>
 			产奶信息</span></th></tr>
 			<tr class="ui-bar-d">
-			<th width="30%">栏目</th><th width="70%">数据</th>
+			<th width="50%">栏目</th><th width="50%">数据</th>
 			 </tr>
 			<% 
 			  int i=1;
@@ -334,16 +314,10 @@ if (typeof WeixinJSBridge == "undefined"){
 		
 	<%} %>	
 		
-		<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-		
-		
-		
-		
-		
-		
-	</body>
+		<div id="container" style="min-width: ; height: 400px; margin: 0 auto"></div>
+</body>
 <script type="text/javascript">
-/**
+
 var curt=1;
 var pageSize=1;
 
@@ -551,6 +525,6 @@ $(function() {
 	});
 	
 });
-	**/
+	
 </script>
 </html>

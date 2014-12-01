@@ -1,10 +1,14 @@
 ﻿package util;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -18,6 +22,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
+import bean.fileBean.UpFile;
 import bean.httpsBean.AccessToken;
 import bean.httpsBean.AccessToken_qy;
 import bean.manageBean.UpdateMembers;
@@ -40,6 +45,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.departmentBean.Department;
 import com.menu.manager.BllManager;
+import com.sun.mail.imap.protocol.UID;
 
 public class AccessTokenUtil_qy {
 	/**
@@ -168,8 +174,8 @@ public class AccessTokenUtil_qy {
     public final static String delTagUrl_qy="https://qyapi.weixin.qq.com/cgi-bin/tag/delete?access_token=ACCESS_TOKEN&tagid=TAG_ID";
     public final static String getUserByTagUrl_qy="https://qyapi.weixin.qq.com/cgi-bin/tag/get?access_token=ACCESS_TOKEN&tagid=TAG_ID";
     public final static String delTagUserUrl_qy="https://qyapi.weixin.qq.com/cgi-bin/tag/deltagusers?access_token=ACCESS_TOKEN";
-    
-    
+    public final static String uploadFileUrl_qy="https://qyapi.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+                                                                       
     /**
 	 * 获取accesstoken
 	 * 
@@ -429,7 +435,7 @@ public class AccessTokenUtil_qy {
 
     	JSONArray jojo= (JSONArray) jo.get("taglist"); //获取标签列表 tagid,tagname
     	List<Tag> tagList=  (List<Tag>) jojo.toCollection(jojo, Tag.class);
-    	logger.debug(jo);
+    //	logger.debug(jo);
     	if (null != jo) {
     		if (0 != jo.getInt("errcode")) {
     			logger.debug(jo.getString("errmsg"));
@@ -585,13 +591,27 @@ List<MenuButton> menuButtonlLists =(List<MenuButton>)JSONArray.toCollection( (JS
    //s logger.debug(((JSONObject) jo.get("menu")).get("button").toString());
 }
 
-public static void getUserByTag(String accessToken,String tagId) throws KeyManagementException, NoSuchAlgorithmException, NoSuchProviderException, IOException
+public static List<User> getUserByTag(String accessToken,String tagId) throws KeyManagementException, NoSuchAlgorithmException, NoSuchProviderException, IOException
 {
-	
+	String names="";
 	String url = getUserByTagUrl_qy.replace("ACCESS_TOKEN", accessToken);
 	url = url.replace("TAG_ID", tagId);
     JSONObject jo = httpRequest(url, "GET", "");
+    
+   // List<MenuButton> menuButtonlLists =(List<MenuButton>)JSONArray.toCollection( (JSONArray)((JSONObject) jo.get("menu")).get("button"),MenuButton.class);
     logger.debug(jo.toString());
+    
+ 
+    List<User> us = (List<User>)JSONArray.toCollection((JSONArray) jo.get("userlist"), User.class);
+/**    
+    for(int i=0;i<us.size();i++)
+    {
+          logger.debug(us.get(i).getUserid());
+    }
+*/
+    
+    return us;
+    
 }
 
 public static void delTagByTag(String accessToken,String tagId) throws KeyManagementException, NoSuchAlgorithmException, NoSuchProviderException, IOException
@@ -601,6 +621,95 @@ public static void delTagByTag(String accessToken,String tagId) throws KeyManage
     JSONObject jo = httpRequest(url, "GET", "");
     logger.debug(jo.toString());
 }
+
+public static boolean upLoadFile(String path,String accessToken,UpFile uf) throws KeyManagementException, NoSuchAlgorithmException, NoSuchProviderException, IOException
+{
+	String url = uploadFileUrl_qy.replace("ACCESS_TOKEN", accessToken);
+	url = url.replace("TYPE", "image");
+	//String json = JSONObject.fromObject(uf).toString();
+	
+	File file=new File(uf.getMedia());
+   // JSONObject jo = httpRequest(url, "POST", file);
+    //logger.debug(jo.toString());
+    return true;
+}
+
+/**
+ *   上传文件到微信服务器
+ * @param accessToken
+ * @param type
+ * @param file
+ * @return
+ */
+
+
+public static JSONObject upload(String accessToken, String type, File file) {
+	JSONObject jsonObject = null;
+	String last_wechat_url = uploadFileUrl_qy.replace("ACCESS_TOKEN", accessToken).replace("TYPE", type);
+	// 定义数据分割符
+	String boundary = "----------sunlight";
+	try {
+		URL uploadUrl = new URL(last_wechat_url);
+		HttpURLConnection uploadConn = (HttpURLConnection) uploadUrl.openConnection();
+		uploadConn.setDoOutput(true);
+		uploadConn.setDoInput(true);
+		uploadConn.setRequestMethod("POST");
+		// 设置请求头Content-Type
+		uploadConn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+		// 获取媒体文件上传的输出流（往微信服务器写数据）
+		OutputStream outputStream = uploadConn.getOutputStream();
+
+		// 从请求头中获取内容类型
+		String contentType = "Content-Type: " + getContentType();
+		// 请求体开始
+		outputStream.write(("--" + boundary + "\r\n").getBytes());
+		outputStream.write(String.format("Content-Disposition: form-data; name=\"media\"; filename=\"%s\"\r\n", file.getName()).getBytes());
+		outputStream.write(String.format("Content-Type: %s\r\n\r\n", contentType).getBytes());
+
+		// 获取媒体文件的输入流（读取文件）
+		DataInputStream in = new DataInputStream(new FileInputStream(file));
+		byte[] buf = new byte[1024 * 8];
+		int size = 0;
+		while ((size = in.read(buf)) != -1) {
+			// 将媒体文件写到输出流（往微信服务器写数据）
+			outputStream.write(buf, 0, size);
+		}
+		// 请求体结束
+		outputStream.write(("\r\n--" + boundary + "--\r\n").getBytes());
+		outputStream.close();
+		in.close();
+
+		// 获取媒体文件上传的输入流（从微信服务器读数据）
+		InputStream inputStream = uploadConn.getInputStream();
+		InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+		StringBuffer buffer = new StringBuffer();
+		String str = null;
+		while ((str = bufferedReader.readLine()) != null) {
+			buffer.append(str);
+		}
+		bufferedReader.close();
+		inputStreamReader.close();
+		// 释放资源
+		inputStream.close();
+		inputStream = null;
+		uploadConn.disconnect();
+		// 使用json解析
+		jsonObject = JSONObject.fromObject(buffer.toString());
+		
+	} catch (Exception e) {
+		System.out.println("上传文件失败！");
+		e.printStackTrace();
+	}
+	logger.debug(jsonObject.toString());
+	
+	return jsonObject;
+}
+
+private static String getContentType() throws Exception {
+	return "application/octet-stream";
+}
+
 
 }
 

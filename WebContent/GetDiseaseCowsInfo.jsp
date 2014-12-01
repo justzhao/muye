@@ -28,23 +28,25 @@ response.setCharacterEncoding("utf-8");
 	int pageSize=20;
 	if(openID!=null){
 		if(Services.CheckBind(openID).equals("")){
+			
 				response.sendRedirect("MIS_Bind.jsp?OpenID="+openID);
+				return;
 		}
 	}else{
 	response.sendRedirect("NotWeixin.jsp");
+	return;
 	}
 
 	
 	List<String> farmlist=Services.getAllFarmInfo();
 	String txt = "", dt = "",txt_form="";
 	
-	/**
-	if(!BllManager.IsCheckPermisssion(openID,"12"))
+	
+	if(BllManager.getSendTag("4").indexOf(openID)<0)
 	{
-		txt="没有权限查询";
-		 txt_form="";
-	}else{
-	*/
+		response.sendRedirect("NotPermission.jsp");
+		return;
+	}
 	 txt_form = "<form id=form1 action=\"\" method=\"post\" target=\"_self\">";
 	txt_form += "<label for=\"cowID\">牧场名字</label>";
 	// txt_form+="<input id=\"farmName\" name=\"farmName\" type=\"text\" />";
@@ -103,90 +105,9 @@ response.setCharacterEncoding("utf-8");
 			jo.put("DiseaseName", c.getDiseaseName());
 			jsonArray.add(jo);
 		}
-		//mySession.setAttribute("cowList", cowList);
-	//	mySession.setAttrbute("cowList",cowList.toString());
-	
-	}
-	
- /**
-	if(farmName !=null)
-	{
-		//post过来的重新设置session
-		
-		mySession.setAttribute("farmName", farmName);
-		currtPage=null;
-	}else{
-		//post过来的 session里面应该有值
-		if(mySession.getAttribute("farmName")!=null)
-		{
-			farmName=mySession.getAttribute("farmName").toString();
-		}
-		
 
 	}
-	
-	if(farmName!=null)
-	{
-		
-      if(pageCount==null){
-	        	rows=Services.getDiseaseInfoCount(farmName);
-	        	pageCount=String.valueOf(Integer.parseInt(rows)/20+1);
-	        	
-	        }
-		
-			
-	}
-	
-	
-	txt += "<div><table width=\"100%\" id=\"table-custom-2\" data-mode=\"columntoggle\" class=\"ui-body-d ui-shadow table-stripe ui-responsive\" data-column-btn-theme=\"b\" data-column-btn-text=\"选择要查看的列\" data-column-popup-theme=\"a\"><tr><th colspan=\"25\" > <span class=\"STYLE7\">"
-			+ (farmName == null ? "":farmName)
-			+ "牧场的疾病存栏信息："+rows+"头牛</span></th></tr><tr class=\"ui-bar-d\">"
-			+"<th>牛号</th><th>发病日期</th><th>发病天数</th>"
 
-			+"<th>疾病类型</th><th>疾病名称</th>"
-			
-		    
-		    +"</tr>";
-	if (farmName != null) {
-  
-        if(currtPage==null){
-        	currtPage="1";
-        }
-        
- 
-		
-		txt += Services.getDiseaseCowsInfoHtml(farmName,currtPage);
-         
-		}
-	
-
-	txt += "</table></div>";
-
-	
-	if(farmName!=null)
-	{
-
-    		
-	txt +="<div> <div style=\" margin-top:12px; width:100%;text-align:center\">";
-    txt+=" <a class=\"fpage\" onclick=\"firstPage();\" style=\"text-decoration:none;\" href = \"javascript:void(0); \"><span style=\"font-size:16px;color:white\" > 首页</span></a>";
-
-	if(Integer.parseInt(currtPage)>1){
-
-		txt+="<a class=\"page\" onclick=\"prePage();\"style=\"text-decoration:none;\" href =\"javascript:void(0); \" ><span style=\"font-size:16px;color:white\" >上一页</span></a>";
-	}
-	if(Integer.parseInt(currtPage)<Integer.parseInt(pageCount)){
-		
-
-	txt+="<a class=\"page\" onclick=\"nextPage();\" style=\"text-decoration:none;\" href =\"javascript:void(0); \" ><span style=\"font-size:16px;color:white\" >下一页</span></a>";
-	}
-	txt+="<a class=\"page\" onclick=\"lastPage();\" style=\"text-decoration:none;\" href =\"javascript:void(0); \" ><span style=\"font-size:16px;color:white\" > 尾页</span></a></div>";
-
-	txt+="<div style=\" margin-top:12px; text-align:center\"><span style=\"font-size:14px;color:black\" >  第"+ currtPage+"页/共"+pageCount+"页</span>   </div></div>";
-	
-
-
-	}
-	**/
 	
 
 %>
@@ -230,7 +151,7 @@ response.setCharacterEncoding("utf-8");
 }
 td{
 border:1px solid gray;
-font-size:11px;
+
 }
 th{
 border:1px solid gray;

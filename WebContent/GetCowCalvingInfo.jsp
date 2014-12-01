@@ -29,9 +29,16 @@ response.setCharacterEncoding("utf-8");
 	if(openID!=null){
 		if(Services.CheckBind(openID).equals("")){
 				response.sendRedirect("MIS_Bind.jsp?OpenID="+openID);
+				return;
 		}
 	}else{
 	response.sendRedirect("NotWeixin.jsp");
+	return;
+	}
+	if(BllManager.getSendTag("4").indexOf(openID)<0)
+	{
+		response.sendRedirect("NotPermission.jsp");
+		return;
 	}
 		
 	String txt = "", dt = "",txt_form="";
@@ -145,7 +152,7 @@ response.setCharacterEncoding("utf-8");
 }
 td{
 border:1px solid gray;
-font-size:11px;
+
 }
 th{
 border:1px solid gray;

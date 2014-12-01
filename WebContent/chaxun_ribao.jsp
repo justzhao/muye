@@ -30,7 +30,7 @@
 		
 		
 
-	txt += "<div><table width=\"100%\" id=\"table-custom-2\" data-mode=\"columntoggle\" class=\"ui-body-d ui-shadow table-stripe ui-responsive\" data-column-btn-theme=\"b\" data-column-btn-text=\"选择要查看的列\" data-column-popup-theme=\"a\"><tr class=\"ui-bar-d\"><th>牧场</th><th>总产量</th><th>成母牛单产</th><th>泌乳牛单产</th><th>蛋白质</th><th>脂肪</th><th>干物质</th><th>微生物</th><th>体细胞</th><th data-priority=\"1\">干奶牛比例</th></tr>";
+	txt += "<div><table width=\"100%\" id=\"table-custom-2\" data-mode=\"columntoggle\" class=\"ui-body-d ui-shadow table-stripe ui-responsive\" data-column-btn-theme=\"b\" data-column-btn-text=\"选择要查看的列\" data-column-popup-theme=\"a\"> <tr><th colspan=\"25\"> <span class=\"STYLE7\">当日日报 </span></th></tr><tr><th>牧场</th><th>总产量</th><th>成母牛单产</th><th>泌乳牛单产</th><th>蛋白质</th><th>脂肪</th><th>干物质</th><th>微生物</th><th>体细胞</th><th data-priority=\"1\">干奶牛比例</th></tr>";
 	try{
 		Connection conn;
 		ResultSet rsL1;
@@ -50,10 +50,10 @@
 			txt +="<tr>";
 			for(int i=2;i<=count;i++){
 				if(i==11){
-				txt +="<td>"+rsL1.getString(i)+"%</td>";
+				txt +="<td>"+(rsL1.getString(i)!=null?rsL1.getString(i):"")+"%</td>";
 								}
 			else{
-				txt +="<td>"+rsL1.getString(i)+"</td>";
+				txt +="<td>"+(rsL1.getString(i)!=null?rsL1.getString(i):"")+"</td>";
 								}
 			}
 			txt +="</tr>";
@@ -86,6 +86,8 @@
 <link
 	href="PlugIn/jQuery/jquery.mobile-1.4.3/jquery.mobile-1.4.3.min.css"
 	rel="stylesheet" type="text/css" />
+	<link href="PlugIn/jQuery/jquery-ui-1.10.2/themes/base/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
 <script src="PlugIn/jQuery/jquery-1.11.1.js" type="text/javascript"></script>
 <script
 	src="PlugIn/jQuery/jquery.mobile-1.4.3/jquery.mobile-1.4.3.min.js"
@@ -93,20 +95,24 @@
 <title>日报</title>
 <style>
 body
-{
+    {
 		font-size:30px;
 	}
+
+
 td{
 	text-align:right;
 	font-size:30px;
 	border:2px solid gray;
 	}
-	th{
+th{
 	text-align:center;
 	font-size:30px;
-	border:2px solid gray;
+	border:1px solid gray;
+
 	}
 	
+
 	.search{
 background:url(images/bbg.jpg) repeat top center;
 }

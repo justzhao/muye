@@ -76,7 +76,14 @@ user=Session.getAttribute("CurrentUsr").toString();
                     </ul>
                 </div>
                 
+                          <div>
+                    <a class="one">查询资料管理</a>
+                    <ul class="kid">
+                  
+                        <li><b class="tip"></b><a target="Conframe" href="DataPermission.jsp">权限设置</a></li>
                 
+                    </ul>
+                </div>
                 
              
            
